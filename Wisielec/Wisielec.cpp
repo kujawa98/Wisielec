@@ -33,7 +33,34 @@ void LoadResults(std::vector<Player>& players) {
     file.close();
 }
 
+void ShowResults(const std::vector<Player>& players) {
+    std::cout << "Best results" << std::endl;
+    for (const auto& player : players) {
+        std::cout << player.name << " " << player.points << " points" << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::vector<std::string> words;
+    std::vector<Player> players;
+
+    LoadWords(words);
+    if (words.empty()) {
+        std::cerr << "No words in file" << std::endl;
+        return 1;
+    }
+
+    LoadResults(players);
+    ShowResults(players);
+
+    char option;
+    do {
+        std::cin >> option;
+    } while (tolower(option) == '/');
+
+    std::cout << "Game has ended" << std::endl;
+    return 0;
 }
